@@ -21,14 +21,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
     @Override
     protected void configure (HttpSecurity http) throws Exception{
-        http.authorizeHttpRequests()
-                .antMatcher(HttpMethod.GET,"/api/customers").hasRole("EMPLOYEE")
-                .antMatcher(HttpMethod.GET,"/api/customers/**").hasRole("EMPLOYEE")
-                .antMatcher(HttpMethod.POST,"/api/customers").hasAnyRole("MANAGER","ADMIN")
-                .antMatcher(HttpMethod.POST,"/api/customers").hasAnyRole("MANAGER","ADMIN")
-                .antMatcher(HttpMethod.PUT,"/api/customers").hasAnyRole("MANAGER","ADMIN")
-                .antMatcher(HttpMethod.PUT,"/api/customers").hasAnyRole("MANAGER","ADMIN")
-                .antMatcher(HttpMethod.DELETE,"/api/customers").hasRole("EMPLOYEE")
+        http
+                .authorizeRequests()
+
+                .antMatchers(HttpMethod.GET,"/api/customers").hasRole("EMPLOYEE")
+                .antMatchers(HttpMethod.GET,"/api/customers/**").hasRole("EMPLOYEE")
+                .antMatchers(HttpMethod.POST,"/api/customers").hasAnyRole("MANAGER","ADMIN")
+                .antMatchers(HttpMethod.POST,"/api/customers").hasAnyRole("MANAGER","ADMIN")
+                .antMatchers(HttpMethod.PUT,"/api/customers").hasAnyRole("MANAGER","ADMIN")
+                .antMatchers(HttpMethod.PUT,"/api/customers").hasAnyRole("MANAGER","ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/api/customers").hasRole("EMPLOYEE")
                 .and()
                 .httpBasic()
                 .and()

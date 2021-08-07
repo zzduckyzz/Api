@@ -11,6 +11,7 @@ import java.util.List;
 public class CustomerRestController {
     @Autowired
     private CustomerService customerService;
+
     @GetMapping("/customers")
     public List<Customer> getCustomer(){
         return customerService.getCustomers();
